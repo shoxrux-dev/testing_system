@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="eng"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/text-box-5731550-4805333.png" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/tw-elements.min.css}"/>
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                fontFamily: {
+                    sans: ["Roboto", "sans-serif"],
+                    body: ["Roboto", "sans-serif"],
+                    mono: ["ui-monospace", "monospace"],
+                },
+            },
+            corePlugins: {
+                preflight: false,
+            },
+        };
+
+    </script>
+</head>
+
+<body class="min-h-[100vh] flex flex-col bg-slate-50">
+<nav class="relative flex w-full flex-wrap items-center justify-between bg-blue-100 py-2 text-blue-800 lg:py-4" data-te-navbar-ref>
+    <div class="flex w-full flex-wrap items-center justify-between px-3">
+        <div>
+            <a class="mx-2 my-1 flex items-center lg:mb-0 lg:mt-0" href="/">
+                <img th:src="@{/images/default/icon.png}" alt="icon" width="40px" height="40px">
+                <div class="text-2xl font-semibold mx-2">
+                    <span class="text-yellow-400">Testing</span> System
+                </div>
+            </a>
+        </div>
+
+        <button class="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden" type="button" data-te-collapse-init data-te-target="#navbarSupportedContent4" aria-controls="navbarSupportedContent4" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="[&>svg]:w-7">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-7 w-7">
+                  <path fill-rule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd"/>
+                </svg>
+            </span>
+        </button>
+        <div class="!visible mt-2 hidden flex-grow basis-[100%] items-center lg:mt-0 lg:!flex lg:basis-auto" id="navbarSupportedContent4" data-te-collapse-item>
+            <ul class="list-style-none mr-auto flex flex-col pl-0 lg:mt-1 lg:flex-row" data-te-navbar-nav-ref>
+                <li class="my-4 pl-2 lg:my-0 lg:pl-2 lg:pr-1" data-te-nav-item-ref>
+                    <a class="category mr-3 inline-block rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary bg-white transition duration-150 ease-in-out hover:bg-slate-400 hover:text-black focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 motion-reduce:transition-none" aria-current="page"
+                            th:href="@{/category}" data-te-nav-link-ref
+                    >Category</a>
+                </li>
+            </ul>
+
+            <div class="flex items-center mx-2" sec:authorize="isAnonymous()">
+                <a th:href="@{/login}" data-te-ripple-init data-te-ripple-color="light" class="login mr-3 inline-block rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary bg-white transition duration-150 ease-in-out hover:bg-slate-400 hover:text-black focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 motion-reduce:transition-none">
+                    Login
+                </a>
+                <a th:href="@{/register}" data-te-ripple-init data-te-ripple-color="light" class="register mr-3 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                    Register
+                </a>
+            </div>
+
+            <div class="flex items-center hover:text-blue-500" sec:authorize="isAuthenticated()">
+                <div class="relative" data-te-dropdown-position="dropstart">
+                    <button class="m-0 flex justify-between items-center" type="button" id="dropdownMenuButton1s" data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init data-te-ripple-color="light">
+                        <h3 th:text="${#authentication.getPrincipal().username}" class="ml-2 inline-block rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary bg-white transition duration-150 ease-in-out hover:bg-slate-400 hover:text-black focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 motion-reduce:transition-none"></h3>
+                        <img th:src="@{/images/user/{image}(image=${#authentication.getPrincipal().image})}" class="w-9 h-9 object-cover rounded-full mx-2" alt="Avatar"/>
+                    </button>
+                    <ul style="width: 150px" class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-sm border-none text-neutral-800 bg-blue-100 bg-clip-padding text-left text-base shadow-lg [&[data-te-dropdown-show]]:block" aria-labelledby="dropdownMenuButton1s" data-te-dropdown-menu-ref>
+                        <li>
+                            <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal hover:bg-blue-300 active:text-blue-900 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-blue-400"
+                               th:href="@{/profile}" data-te-dropdown-item-ref>Profile</a>
+                        </li>
+                        <li>
+                            <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal hover:bg-blue-300 active:text-blue-900 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-blue-400"
+                               th:href="@{/logout}" data-te-dropdown-item-ref>Logout</a>
+                        </li>
+                        <li sec:authorize="hasRole('ADMIN')">
+                            <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal hover:bg-blue-300 active:text-blue-900 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-blue-400"
+                               th:href="@{/admin}" data-te-dropdown-item-ref>Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div layout:fragment="body">
+
+</div>
+
+<footer class="flex flex-wrap items-center justify-center w-full bg-blue-100 text-center lg:text-left mt-auto">
+    <div class="container p-6 text-blue-800">
+        <div class="grid gap-4 lg:grid-cols-2">
+            <div class="mb-6 md:mb-0">
+                <h5 class="mb-2 font-medium uppercase">Performance Perfection: Unveiling Our Advanced Testing Solutions</h5>
+                <p class="mb-4">
+                    Reliable Testing Solutions at Your Fingertips: Elevate Your System's Performance with Our Cutting-edge Testing Tools.
+                </p>
+            </div>
+
+            <div class="mb-6 md:mb-0">
+                <h5 class="mb-2 font-medium uppercase">Testing Triumph: Elevate Your System with Precision and Confidence</h5>
+                <p class="mb-4">
+                    Empower Your Software with Precision: Choose Confidence, Choose Excellence – Unleash the Power of Seamless Testing for Optimal System Performance.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full bg-blue-200 p-4 text-center text-blue-700">
+        © 2023 Copyright:
+        <a class="text-blue-800" href="https://tw-elements.com/"
+        >Testing System</a>
+    </div>
+</footer>
+
+<script th:src="@{/js/tw-elements.umd.min.js}"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<script>
+    const pathName = window.location.pathname;
+    const pageName = pathName.substring(pathName.indexOf('/'), pathName.length);
+
+    if(pageName === "/category") {
+        document.querySelector(".category").classList.add("underline");
+    }
+
+    if(pageName === "/login") {
+        document.querySelector(".login").classList.add("underline");
+    }
+
+    if(pageName === "/register") {
+        document.querySelector(".register").classList.add("underline");
+    }
+
+</script>
+</body>
+</html>

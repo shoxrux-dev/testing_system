@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="eng"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{views/admin/layout}">
+<head>
+
+    <title>Users Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<div layout:fragment="body">
+    <div class="block h-5 my-2"></div>
+
+    <div class="flex flex-col bg-white py-4 shadow-md rounded-xl mb-10">
+        <div class="flex justify-between items-center bg-clip-border mx-4 rounded-xl overflow-hidden bg-neutral-800 from-gray-900 to-gray-800 text-white shadow-gray-900/20 shadow-lg -mt-6 mb-8 p-6">
+            <h6 class="block mr-1 antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
+                Users Table
+            </h6>
+            <button type="button" data-te-offcanvas-toggle data-te-target="#offcanvasRight"
+                    aria-controls="offcanvasRight"
+                    data-te-ripple-init data-te-ripple-color="light"
+                    class="inline-block float-right rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200">
+                add category
+            </button>
+            <div class="invisible fixed bottom-0 right-0 top-0 z-[1045] flex w-96 max-w-full translate-x-full flex-col border-none bg-white bg-clip-padding text-neutral-700 shadow-sm outline-none transition duration-300 ease-in-out dark:bg-neutral-800 dark:text-neutral-200 [&[data-te-offcanvas-show]]:transform-none"
+                 tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" data-te-offcanvas-init>
+                <div class="flex items-center justify-between p-4">
+                    <h5 class="mb-0 font-semibold leading-normal" id="offcanvasRightLabel">
+                        Create a new category
+                    </h5>
+                    <button type="button"
+                            class="box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+                            data-te-offcanvas-dismiss>
+            <span class="w-[1em] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                   stroke="currentColor" class="h-6 w-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </span>
+                    </button>
+                </div>
+                <div class="offcanvas-body flex-grow overflow-y-auto p-4">
+                    <form method="post" action="#" enctype="multipart/form-data">
+                        <div class="relative mb-3" data-te-input-wrapper-init>
+                            <input required type="text" name="name"
+                                   class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                   id="name" aria-describedby="emailHelp" placeholder="Name"/>
+                            <label for="name"
+                                   class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                            >Category name</label>
+                        </div>
+                        <div class="mb-3" data-te-input-wrapper-init>
+                            <label for="formFile" class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
+                            >Category image</label>
+                            <input required name="image"
+                                   class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
+                                   type="file" id="formFile"/>
+                        </div>
+                        <button type="submit"
+                                class="dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]] inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                                data-te-ripple-init data-te-ripple-color="light">
+                            create
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div th:if="${not #lists.isEmpty(users.getContent())}">
+            <div class="overflow-x-auto">
+                <div class="inline-block min-w-full">
+                    <div class="overflow-hidden">
+                        <table class="min-w-full text-center text-sm font-light">
+                            <thead class="border-b font-medium">
+                            <tr>
+                                <th scope="col" class="py-2 px-3">#</th>
+                                <th scope="col" class="py-2 px-3">Image</th>
+                                <th scope="col" class="py-2 px-3">Username</th>
+                                <th scope="col" class="py-2 px-3">Roles</th>
+                                <th scope="col" class="py-2 px-3">Created At</th>
+                                <th scope="col" class="py-2 px-3">Updated At</th>
+<!--                                <th scope="col" class="py-2 px-3">Action</th>-->
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="user : ${users.getContent()}" class="border-b hover:bg-gray-100">
+                                <td class="py-2 px-3 whitespace-nowrap" th:text="${user.getId()}"></td>
+                                <td class="py-1 px-2 whitespace-nowrap flex justify-center">
+                                    <img
+                                            th:src="@{/images/user/{image}(image=${user.getImage()})}"
+                                            class="rounded-md object-cover bg-center"
+                                            style="height: 30px; width: 30px"
+                                            alt="product"/>
+                                </td>
+                                <td class="py-2 px-3 whitespace-nowrap" th:text="${user.getUsername()}"></td>
+                                <td class="whitespace-nowrap">
+                                    <div th:each="role : ${user.getRoles()}" class="flex justify-center bg-info text-white px-2 py-1 rounded-md font-bold text-xs">
+                                        <h3 th:text="${role.getName()}" class="mr-0.5"></h3>
+                                    </div>
+                                </td>
+                                <td class="py-2 px-3 whitespace-nowrap" th:text="${user.getCreatedAt()}"></td>
+                                <td class="py-2 px-3 whitespace-nowrap"  th:text="${user.getUpdatedAt()}"></td>
+<!--                                <td class="py-1 px-3 whitespace-nowrap">-->
+<!--                                    <a th:href="@{/admin/users/{userId}(userId=${user.getId()})/set-role}" class="inline-block rounded border-2 border-yellow-400 px-6 py-1 text-xs font-medium uppercase leading-normal text-warning transition duration-150 ease-in-out hover:border-yellow-500 hover:bg-yellow-400 hover:text-white focus:border-warning-600 focus:text-warning-600 focus:outline-none focus:ring-0 active:border-warning-700 active:text-warning-700">-->
+<!--                                        set role</a>-->
+<!--                                </td>-->
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <nav aria-label="Page navigation example" th:if="${users.getTotalPages() > 0}" class="flex justify-end mx-4 mt-1 justify-center md:justify-end">
+                <ul class="list-style-none flex">
+                    <li>
+                        <a th:class="'relative block rounded px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300 ' + (${users.getPageNum() == 0} ? 'pointer-events-none ' : 'bg-primary-100')"
+                           th:href="@{/admin/users(pageNum=${users.getPageNum()-1})}">Previous</a>
+                    </li>
+                    <li th:each="pageNumber : ${#numbers.sequence(0, users.getTotalPages() - 1)}">
+                        <a th:href="@{/admin/users(pageNum=${pageNumber})}" th:text="${pageNumber}"
+                           th:class="'relative block rounded px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white ' + (${pageNumber == users.getPageNum()} ? 'bg-primary-100')"></a>
+                    </li>
+                    <li>
+                        <a th:class="'relative block rounded px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300 ' + (${users.isLast()} ? 'pointer-events-none' : 'bg-primary-100')"
+                           th:href="@{/admin/users(pageNum=${users.getPageNum()+1})}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div th:if="${#lists.isEmpty(users.getContent())}">
+            <div class="mb-4 rounded-lg bg-info-100 px-6 py-5 text-base text-info-800" role="alert">
+                Users not found.
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

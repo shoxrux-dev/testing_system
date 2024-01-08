@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="eng"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{views/layout}">
+<head>
+
+    <title>Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<div layout:fragment="body" style="background-image: url('/images/default/4212810.png');" class="bg-fixed bg-cover">
+    <div class="flex flex-col mx-auto px-4 md:w-2/3 justify-center my-4">
+            <div th:if="${not #lists.isEmpty(tests)}">
+                <form th:action="@{/solve}" method="post">
+                    <div class="block rounded-lg bg-white p-6 mb-1" th:each="test : ${tests}">
+                        <div class="flex items-center mb-4">
+                            <h5 th:text="${test.getTestId()}" class="mr-2 py-1 rounded-2xl px-3 bg-cyan-300"></h5>
+                            <h5 th:text="${test.getQuestion()}" class="text-xl font-bold leading-tight text-yellow-800"></h5>
+                        </div>
+                        <div class="text-base text-neutral-600 dark:text-neutral-200">
+                            <div class="ml-4 mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+                                <div class="mb-1" th:each="ans : ${test.getAnswers()}">
+                                    <input required
+                                           class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                                           type="radio"
+                                           th:name="'ans'+${test.getId()}"
+                                           th:value="${test.getId()}+'-'+${ans}"
+                                           th:id="${test.getId()}"/>
+                                    <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
+                                           th:for="${test.getId()}"
+                                           th:text="${ans}">30</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                            type="submit"
+                            class="inline-block float-right rounded bg-white px-6 pb-2 pt-2.5 text-xs hover:text-white font-medium uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+                            data-te-ripple-init
+                            data-te-ripple-color="light">
+                        Send
+                    </button>
+                </form>
+            </div>
+            <div th:if="${#lists.isEmpty(tests)}">
+                <div class="mb-4 rounded-lg bg-warning-100 px-6 py-5 text-base text-warning-800" role="alert">
+                    Sorry, there are no tests for this category!
+                </div>
+                <div>
+                    <a href="/"
+                       data-te-ripple-init
+                       data-te-ripple-color="light"
+                       class="inline-block rounded bg-slate-500 float-right w-full text-center px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-slate-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-slate-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] ">
+                        Back to home
+                    </a>
+                </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>

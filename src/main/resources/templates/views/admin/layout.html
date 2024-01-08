@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="eng"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+            rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/tw-elements.min.css}"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                fontFamily: {
+                    sans: ["Roboto", "sans-serif"],
+                    body: ["Roboto", "sans-serif"],
+                    mono: ["ui-monospace", "monospace"],
+                },
+            },
+            corePlugins: {
+                preflight: false,
+            },
+        };
+
+    </script>
+    <style>
+        .activeLink {
+            background-color: #262626;
+            color: #FFFFFF;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+<header>
+    <nav id="sidenav-1"
+         class="fixed left-0 top-0 z-[1035] h-screen rounded-2xl md:top-2 md:left-2 w-60 -translate-x-full overflow-hidden bg-white shadow-sm border border-solid border-gray-300 xl:data-[te-sidenav-hidden='false']:translate-x-0"
+         data-te-sidenav-init data-te-sidenav-hidden="false" data-te-sidenav-mode-breakpoint-over="0"
+         data-te-sidenav-mode-breakpoint-side="xl" data-te-sidenav-content="#content" data-te-sidenav-accordion="true">
+        <button data-te-sidenav-toggle-ref data-te-target="#sidenav-1"
+                class="block border-0 bg-transparent ml-auto p-3 text-gray-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 xl:hidden"
+                aria-controls="#sidenav-1" aria-haspopup="true">
+              <span class="block [&>svg]:h-6 [&>svg]:w-6 [&>svg]:text-gray-400">
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                </svg>
+              </span>
+        </button>
+        <div class="relative">
+            <a class="px-8 text-center" href="/">
+                <h6 class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900">
+                    Testing System Dashboard
+                </h6>
+            </a>
+            <button class="align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-8 max-w-[32px] h-8 max-h-[32px] rounded-lg text-xs text-white hover:bg-white/10 active:bg-white/30 absolute right-0 top-0 grid rounded-br-none rounded-tl-none xl:hidden" type="button">
+                <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg></span>
+            </button>
+        </div>
+        <div class="m-4">
+            <ul class="mb-4 flex flex-col gap-1">
+                <li><a class="" th:href="@{/admin}">
+                    <button class="admin align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-blue-gray-500 hover:bg-gray-100 active:bg-blue-gray-500/30 w-full flex items-center gap-4 px-4 capitalize"
+                            type="button" style="position: relative; overflow: hidden;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                             aria-hidden="true" class="w-5 h-5 text-inherit">
+                            <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z"></path>
+                            <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z"></path>
+                        </svg>
+                        <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
+                          Admin</p>
+                    </button>
+                </a></li>
+                <li><a class="" th:href="@{/admin/users}">
+                    <button class="admin-users align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-blue-gray-500 hover:bg-gray-100 active:bg-blue-gray-500/30 w-full flex items-center gap-4 px-4 capitalize"
+                            type="button" style="position: relative; overflow: hidden;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                        </svg>
+                        <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
+                          Users</p>
+                    </button>
+                </a></li>
+                <li><a class="" th:href="@{/admin/category}">
+                    <button class="admin-category align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-blue-gray-500 hover:bg-gray-100 active:bg-blue-gray-500/30 w-full flex items-center gap-4 px-4 capitalize"
+                            type="button" style="position: relative; overflow: hidden;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
+                            <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2m0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14"/>
+                        </svg>
+                        <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
+                            Category</p>
+                    </button>
+                </a></li>
+                <li><a class="" th:href="@{/admin/test}">
+                    <button class="admin-test align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-blue-gray-500 hover:bg-gray-100 active:bg-blue-gray-500/30 w-full flex items-center gap-4 px-4 capitalize"
+                            type="button" style="position: relative; overflow: hidden;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-question-fill" viewBox="0 0 16 16">
+                            <path d="M5.933.87a2.89 2.89 0 0 1 4.134 0l.622.638.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636zM7.002 11a1 1 0 1 0 2 0 1 1 0 0 0-2 0zm1.602-2.027c.04-.534.198-.815.846-1.26.674-.475 1.05-1.09 1.05-1.986 0-1.325-.92-2.227-2.262-2.227-1.02 0-1.792.492-2.1 1.29A1.71 1.71 0 0 0 6 5.48c0 .393.203.64.545.64.272 0 .455-.147.564-.51.158-.592.525-.915 1.074-.915.61 0 1.03.446 1.03 1.084 0 .563-.208.885-.822 1.325-.619.433-.926.914-.926 1.64v.111c0 .428.208.745.585.745.336 0 .504-.24.554-.627z"/>
+                        </svg>
+                        <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
+                            Tests</p>
+                    </button>
+                </a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <nav id="main-navbar"
+         class="fixed left-0 right-0 top-0 flex w-full flex-nowrap items-center bg-slate-50 px-1 py-3 md:p-5 justify-between text-gray-500 hover:text-gray-700 focus:text-gray-700 lg:flex-wrap lg:justify-start xl:pl-60"
+         data-te-navbar-ref>
+        <div class="flex w-full flex-wrap items-center justify-between px-4 m-2 md:mx-6">
+            <button data-te-sidenav-toggle-ref data-te-target="#sidenav-1"
+                    class="block border-0 bg-transparent px-2.5 text-gray-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 xl:hidden"
+                    aria-controls="#sidenav-1" aria-haspopup="true">
+              <span class="block [&>svg]:h-10 [&>svg]:w-10 [&>svg]:text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+                  <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                  <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                </svg>
+              </span>
+            </button>
+            <form class="relative ml-4 mr-auto flex flex-wrap items-stretch xl:mx-0">
+                <input autocomplete="off" type="search"
+                       class="relative m-0 inline-block w-[1%] min-w-[225px] flex-auto rounded border border-solid border-gray-300 bg-transparent px-3 py-1.5 text-base font-normal text-gray-700 transition duration-300 ease-in-out focus:border-primary-600 focus:text-gray-700 focus:shadow-te-primary focus:outline-none dark:text-gray-200 dark:placeholder:text-gray-200"
+                       placeholder='Search (ctrl + "/" to focus)'/>
+                <span class="flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-gray-700 dark:text-gray-200 [&>svg]:w-4"
+                      id="basic-addon2">
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img"
+                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="currentColor"
+                    d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+            </svg>
+          </span>
+            </form>
+            <ul class="relative flex items-center mt-4 md:mt-0">
+                <li class="relative" data-te-dropdown-ref>
+                    <a class="mr-4 flex items-center text-gray-500 hover:text-gray-700 focus:text-gray-700" href="#"
+                       id="navbarDropdownMenuLink" role="button" data-te-dropdown-toggle-ref aria-expanded="false">
+                      <span class="dark:text-gray-200 [&>svg]:w-3.5">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bell" role="img"
+                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                          <path fill="currentColor"
+                                d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z"></path>
+                        </svg>
+                      </span>
+                        <span class="absolute -mt-2.5 ml-2 rounded-full bg-red-600 px-1.5 py-[1px] text-[0.6rem] text-white"
+                        >1</span>
+                    </a>
+                    <ul class="absolute left-auto right-0 z-[1000] float-left m-0 mt-1 hidden min-w-[10rem] list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-zinc-700 [&[data-te-dropdown-show]]:block"
+                        aria-labelledby="navbarDropdownMenuLink" data-te-dropdown-menu-ref>
+                        <li>
+                            <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
+                               href="#" data-te-dropdown-item-ref
+                            >Some news</a>
+                        </li>
+                        <li>
+                            <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
+                                    href="#" data-te-dropdown-item-ref
+                            >Another news</a>
+                        </li>
+                        <li>
+                            <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
+                                    href="#" data-te-dropdown-item-ref
+                            >Something else here</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Avatar -->
+                <li class="relative" data-te-dropdown-ref>
+                    <a class="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none" href="#" role="button" data-te-dropdown-toggle-ref aria-expanded="false">
+                        <img
+                                th:src="@{/images/user/{image}(image=${#authentication.getPrincipal().image})}"
+                                class="rounded-full"
+                                style="height: 22px; width: 22px"
+                                alt="Avatar"
+                                loading="lazy"/>
+                    </a>
+                    <ul class="absolute left-auto right-0 z-[1000] float-left m-0 mt-1 hidden min-w-[10rem] list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-zinc-700 [&[data-te-dropdown-show]]:block" aria-labelledby="dropdownMenuButton2" data-te-dropdown-menu-ref>
+                        <li>
+                            <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
+                               href="#" data-te-dropdown-item-ref
+                            >Settings</a>
+                        </li>
+                        <li>
+                            <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
+                                    th:href="@{/logout}" data-te-dropdown-item-ref
+                            >Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main class="md:ml-72 md:mt-24 md:mr-16 mt-[150px] mx-2">
+    <div layout:fragment="body"></div>
+</main>
+
+<script th:src="@{/js/tw-elements.umd.min.js}"></script>
+<script>
+    const pathName = window.location.pathname;
+    const pageName = pathName.substring(pathName.indexOf('/'), pathName.length);
+
+    if(pageName === "/admin") {
+        document.querySelector(".admin").classList.add("activeLink");
+    }
+
+    if(pageName === "/admin/category") {
+        document.querySelector(".admin-category").classList.add("activeLink");
+    }
+
+    if(pageName === "/admin/test") {
+        document.querySelector(".admin-test").classList.add("activeLink");
+    }
+
+    if(pageName === "/admin/users") {
+        document.querySelector(".admin-users").classList.add("activeLink");
+    }
+
+</script>
+
+</body>
+</html>
